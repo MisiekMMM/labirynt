@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviour
     
     bool endGame = false;
     bool isWin = false;
+
+    public int points = 0;
+
+    public int redKey = 0;
+    public int greenKey = 0;
+
+    public int goldKey = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         if (timeToEnd <= 0)
         {
-            timeToEnd = 60;
+            timeToEnd = 10;
         }
 
         InvokeRepeating("Stopper", 2, 1);
@@ -36,6 +43,17 @@ public class GameManager : MonoBehaviour
     {
         timeToEnd--;
         Debug.Log("Time:" + timeToEnd + "s");
+
+        if (timeToEnd <= 0)
+        {
+            timeToEnd = 0;
+            endGame = true;
+
+        }
+        if (endGame)
+        {
+            EndGame();
+        }
     }
 
     public void PauseGame()
@@ -65,5 +83,30 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
+    }
+    public void EndGame()
+    {
+        CancelInvoke("Stopper");
+        if (isWin)
+        {
+            Debug.Log("You win!👍🔥🔥🔥");
+        }
+        else
+        {
+            Debug.Log("You lose! 👎💀💀⏳");
+        }
+    }
+    public void AddPoints(int value)
+    {
+        points += value;
+    }
+    public void AddTime(int value)
+    {   
+        timeToEnd += value;
+    }
+    public void FreezeTime(float time)
+    {
+        CancelInvoke("Stopper");
+        InvokeRepeating("Stopper", time, 1);
     }
 }

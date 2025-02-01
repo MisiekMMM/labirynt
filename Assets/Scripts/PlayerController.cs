@@ -43,10 +43,10 @@ public class PlayerController : MonoBehaviour
                 default:
                     speed = 8f;
                     break;
-                case "Low": // teren spowalniaj¹cy
+                case "Low": // teren spowalniajï¿½cy
                     speed = 1f;
                     break;
-                case "High": // teren przyspieszaj¹cy
+                case "High": // teren przyspieszajï¿½cy
                     speed = 50f;
                     break;
             }
@@ -58,5 +58,12 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
         characterController.Move(move * speed * Time.deltaTime);
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("PickUp"))
+        {
+            hit.gameObject.GetComponent<PickUpScript>().Picked();
+        }
     }
 }
