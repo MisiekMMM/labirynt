@@ -5,24 +5,22 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
     {
-       Rotation(); 
+        Rotation();
     }
+
     public void Rotation()
     {
-        transform.Rotate(new Vector3(0 ,5f, 0));
+        transform.Rotate(new Vector3(0, 0, 5f));
     }
+
     public virtual void Picked()
     {
         Debug.Log("Picked 👍😀😁😁📣😱😱😱");
         Destroy(this.gameObject);
     }
-    
 }

@@ -2,27 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clock : PickUpScript
+public class Clock : PickUp
 {
-    public bool addTime; 
-    public int timeToAdd = 8;
-    // Start is called before the first frame update
+    public bool addTime; // true -> dodawanie czasu; false -> odejmowanie czasu
+    public int time = 5;
+
     public override void Picked()
     {
-        if(addTime)
+        if (addTime)
         {
-            GameManager.gameManager.AddTime(timeToAdd);
+            GameManager.gameManager.AddTime(time);
         }
         else
         {
-            GameManager.gameManager.AddTime(-timeToAdd);
+            GameManager.gameManager.AddTime(-time);
         }
-        
+
         Destroy(this.gameObject);
     }
+
+    // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -31,4 +33,3 @@ public class Clock : PickUpScript
         Rotation();
     }
 }
-
