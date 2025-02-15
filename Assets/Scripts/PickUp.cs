@@ -5,9 +5,12 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
-
-    // Update is called once per 
+    // Update is called once per frame
     void Update()
     {
         Rotation();
@@ -15,7 +18,7 @@ public class PickUp : MonoBehaviour
 
     public virtual void Picked()
     {
-        Debug.Log("Podniosï¿½em");
+        Debug.Log("Podnios³em");
         Destroy(this.gameObject);
     }
 

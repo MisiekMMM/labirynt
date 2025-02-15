@@ -9,7 +9,7 @@ public class PortalTeleport : MonoBehaviour
 
     private bool playerIsOverlapping = false;
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -17,7 +17,7 @@ public class PortalTeleport : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -25,7 +25,7 @@ public class PortalTeleport : MonoBehaviour
         }
     }
 
-    private void Teleportation()
+    void Teleportation()
     {
         if (playerIsOverlapping)
         {
@@ -34,17 +34,19 @@ public class PortalTeleport : MonoBehaviour
 
             if (dotProduct < 0f)
             {
-                float rotationDiff = Quaternion.Angle(transform.rotation, receiver.rotation);
+                float rotationDiff = -Quaternion.Angle(transform.rotation, receiver.rotation);
                 rotationDiff += 180;
                 player.Rotate(Vector3.up, rotationDiff);
+
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
                 player.position = receiver.position + positionOffset;
+
                 playerIsOverlapping = false;
             }
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Teleportation();
     }

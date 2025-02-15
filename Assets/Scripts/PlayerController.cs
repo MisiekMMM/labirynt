@@ -34,16 +34,8 @@ public class PlayerController : MonoBehaviour
         //    Debug.Log("Raycast did not hit anything.");
         //}
 
-        if (
-            Physics.Raycast(
-                groundCheck.position,
-                transform.TransformDirection(Vector3.down),
-                out hit,
-                0.4f,
-                groundMask
-            )
-        )
-        {
+        if (Physics.Raycast(groundCheck.position, transform.TransformDirection(Vector3.down), out hit, 0.4f, groundMask))
+            {
             string terrainType = hit.collider.gameObject.tag;
 
             switch (terrainType)
@@ -51,10 +43,10 @@ public class PlayerController : MonoBehaviour
                 default:
                     speed = 8f;
                     break;
-                case "Low": // teren spowalniajï¿½cy
+                case "Low": // teren spowalniaj¹cy
                     speed = 1f;
                     break;
-                case "High": // teren przyspieszajï¿½cy
+                case "High": // teren przyspieszaj¹cy
                     speed = 50f;
                     break;
             }

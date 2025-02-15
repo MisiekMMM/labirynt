@@ -5,9 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
-
-    [SerializeField]
-    int timeToEnd;
+    [SerializeField] int timeToEnd;
     bool isGamePaused = false;
 
     bool endGame = false;

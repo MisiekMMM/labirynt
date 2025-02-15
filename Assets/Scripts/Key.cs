@@ -9,13 +9,11 @@ public enum KeyColor
     Gold,
 }
 
-public class Key : PickUpScript
+public class Key : PickUp
 {
     public KeyColor color;
 
-    // Start is called before the first frame update
-
-
+    // Update is called once per frame
     void Update()
     {
         Rotation();
@@ -24,9 +22,7 @@ public class Key : PickUpScript
     public override void Picked()
     {
         GameManager.gameManager.AddKey(color);
+
         Destroy(this.gameObject);
     }
 }
-
-
-// Update is called once per frame
